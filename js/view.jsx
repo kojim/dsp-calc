@@ -3,7 +3,7 @@ var Product = React.createClass({
   getInitialState: function() {
     var product, cps, imports, language;
     if (this.props.product === undefined) {
-      product = science_pack_1;
+      product = iron_ore;
     } else {
       product = getProductByName(decodeURI(this.props.product));
     }
@@ -95,23 +95,17 @@ var Product = React.createClass({
                              '&language=' + this.state.language;
     var parentonly = (
       <div>
+        <h3>各種想定</h3>
+        <ul>
+          <li>組み立て機はMK.Iを使用することを想定</li>
+          <li>採掘機の採掘対象数は4つであることを想定（つまり採掘速度を2.0/sと想定）</li>
+        </ul>
         <h3>その他</h3>
         <ul>
-          <li>各種設備は電気採掘機, 電気炉, 組立機2, 原油精製所(発展的な石油加工) を使用することを想定。</li>
-          <li>固形燃料は軽油から作ることを想定。</li>
-          <li>油井は1つあたり5/sの原油を排出するものとする。</li>
-          <li>水, エイリアンアーティファクトは無限にあるものとしツール上では無視。</li>
           <li>自分で使うものしかデータ登録してないのでこれが欲しいって人は <a href="https://twitter.com/kojim">@kojim</a> まで。</li>
-          <li>データ古いよとか計算間違ってるよとかの指摘も歓迎</li>
-          <li>iframeタグを使うとこのページを自身のブログ内等に埋め込めます。その際は「その他」以降の情報は表示されなくなるので安心。
-            <pre>
-              例: &lt;iframe width="600" src="http://kojim.github.io/FactorioCalculator.html" frameborder="1"&gt;&lt;/iframe&gt;
-            </pre>
-          </li>
+          <li>Githubリポジトリは<a href="https://github.com/kojim/dsp-calc">こちら</a>。PullRequest受付中</li>
+          <li>他の人が作った<a href="https://calc.dsp-wiki.com/">もっと良いツール</a>があります</li>
         </ul>
-        <p>
-          <a href='http://kojim.github.io/Factorio%E8%87%AA%E5%88%86%E7%94%A8%E3%83%A1%E3%83%A2/'>戻る</a><br/>
-        </p>
       </div>
     );
     return (
