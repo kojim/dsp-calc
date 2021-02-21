@@ -64,6 +64,7 @@ var AssemblyProduct = function(name, name_jp, req_time, result_count, ingredient
 AssemblyProduct.prototype = new Product();
 AssemblyProduct.prototype.build_rate = 0.75;
 AssemblyProduct.prototype.energy_usage = 270;
+AssemblyProduct.prototype.icon = 'fa fa-industry';
 
 
 // 採掘機で掘り出すもの
@@ -78,6 +79,7 @@ Ore.prototype.energy_usage = 420;
 Ore.prototype.require_builder_count =  function(product_per_sec) {
 	return product_per_sec / this.req_time;
 };
+Ore.prototype.icon = 'fas fa-baby-carriage';
 
 // 溶鉱炉で作るもの
 var MetalPlate = function(name, name_jp, req_time, result_count, ingredients) {
@@ -91,7 +93,7 @@ MetalPlate.prototype = new Product();
 MetalPlate.prototype.build_rate = 1;
 MetalPlate.prototype.energy_usage = 360;
 
-// 溶鉱炉で作るもの
+// 研究施設で作るもの
 var MatrixLab = function(name, name_jp, req_time, result_count, ingredients) {
 	this.name         = name;
 	this.name_jp      = name_jp;
@@ -102,7 +104,7 @@ var MatrixLab = function(name, name_jp, req_time, result_count, ingredients) {
 MatrixLab.prototype = new Product();
 MatrixLab.prototype.build_rate = 1;
 MatrixLab.prototype.energy_usage = 480;
-
+MatrixLab.prototype.icon = 'fas fa-flask';
 
 // -------------------------------------------
 // データ定義

@@ -163,7 +163,7 @@ var Ingredient = React.createClass({
     var req_builder = this.props.product.require_builder_count(this.props.cps);
     return (
       <tr>
-        <td>{this.text(this.props.product.name, this.props.product.name_jp)}</td>
+        <td><i className="this.props.product.icon"></i> {this.text(this.props.product.name, this.props.product.name_jp)}</td>
         <td>
           <input type='radio' name={this.props.product.name} onChange={this.handleNotImport}
                               defaultChecked={!this.state.isImport} > {this.text('local', '現地')}</input>
