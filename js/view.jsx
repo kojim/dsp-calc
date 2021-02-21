@@ -98,6 +98,8 @@ var Product = React.createClass({
         <h3>各種想定</h3>
         <ul>
           <li>組み立て機はMK.Iを使用することを想定</li>
+          <li>水素は精製油の副産物として作ることを想定</li>
+          <li>高エネルギーグラファイトは石炭から作ることを想定</li>
           <li>採掘機の採掘対象数は4つであることを想定（つまり採掘速度を2.0/sと想定）</li>
         </ul>
         <h3>その他</h3>
@@ -129,7 +131,7 @@ var Product = React.createClass({
               <th> <i className="fa fa-arrow-down"></i>/<i className="fa fa-truck"></i> {this.text('producing area', '生産方法')}</th>
               <th> <i className="fa fa-industry"></i> {this.text('require builders', '必要設備数')}</th>
               <th> <i className="fa fa-bolt"></i> {this.text('power', '消費電力')}</th>
-              <th> <i className="fa fa-exchange"></i> {this.text('producing/import speed', '生産/搬入速度')}</th>
+              <th> <i className="fas fa-exchange-alt"></i> {this.text('producing/import speed', '生産/搬入速度')}</th>
             </tr>
           </thead>
           <tbody>
@@ -163,7 +165,7 @@ var Ingredient = React.createClass({
     var req_builder = this.props.product.require_builder_count(this.props.cps);
     return (
       <tr>
-        <td>{this.text(this.props.product.name, this.props.product.name_jp)}</td>
+        <td><i className={this.props.product.icon}></i> {this.text(this.props.product.name, this.props.product.name_jp)}</td>
         <td>
           <input type='radio' name={this.props.product.name} onChange={this.handleNotImport}
                               defaultChecked={!this.state.isImport} > {this.text('local', '現地')}</input>

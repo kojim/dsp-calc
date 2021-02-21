@@ -64,20 +64,36 @@ var AssemblyProduct = function(name, name_jp, req_time, result_count, ingredient
 AssemblyProduct.prototype = new Product();
 AssemblyProduct.prototype.build_rate = 0.75;
 AssemblyProduct.prototype.energy_usage = 270;
+AssemblyProduct.prototype.icon = 'fa fa-industry';
 
 
 // 採掘機で掘り出すもの
 var Ore = function(name, name_jp) {
 	this.name     = name;
 	this.name_jp  = name_jp;
-	this.req_time = 2 / 4; // 採掘対象が採掘範囲に4つあることを想定(採掘対象1つごとに2秒に1つ生産される)
 };
 Ore.prototype = new Product();
 Ore.prototype.ingredients = [];
 Ore.prototype.energy_usage = 420;
 Ore.prototype.require_builder_count =  function(product_per_sec) {
-	return product_per_sec / this.req_time;
+	// 採掘対象が採掘範囲に4つあることを想定(採掘対象1つごとに2秒に1つ生産される)
+	var req_time = 2 / 4;
+	return product_per_sec * req_time;
 };
+Ore.prototype.icon = 'fas fa-baby-carriage';
+
+var OilExtractor = function(name, name_jp) {
+	this.name     = name;
+	this.name_jp  = name_jp;
+};
+OilExtractor.prototype = new Product();
+OilExtractor.prototype.ingredients = [];
+OilExtractor.prototype.energy_usage = 840;
+OilExtractor.prototype.require_builder_count =  function(product_per_sec) {
+	// オイルは秒間2個算出されることを想定
+	return product_per_sec / 2;
+};
+OilExtractor.prototype.icon = 'fas fa-baby-carriage';
 
 // 溶鉱炉で作るもの
 var MetalPlate = function(name, name_jp, req_time, result_count, ingredients) {
@@ -90,8 +106,22 @@ var MetalPlate = function(name, name_jp, req_time, result_count, ingredients) {
 MetalPlate.prototype = new Product();
 MetalPlate.prototype.build_rate = 1;
 MetalPlate.prototype.energy_usage = 360;
+MetalPlate.prototype.icon = 'fas fa-burn';
 
-// 溶鉱炉で作るもの
+// 製油所で作るもの
+var OilRefinery = function(name, name_jp, req_time, result_count, ingredients) {
+	this.name         = name;
+	this.name_jp      = name_jp;
+	this.req_time     = req_time;
+	this.result_count = result_count;
+	this.ingredients  = ingredients;
+};
+OilRefinery.prototype = new Product();
+OilRefinery.prototype.build_rate = 1;
+OilRefinery.prototype.energy_usage = 960;
+OilRefinery.prototype.icon = 'fas fa-burn';
+
+// 研究施設で作るもの
 var MatrixLab = function(name, name_jp, req_time, result_count, ingredients) {
 	this.name         = name;
 	this.name_jp      = name_jp;
@@ -102,7 +132,7 @@ var MatrixLab = function(name, name_jp, req_time, result_count, ingredients) {
 MatrixLab.prototype = new Product();
 MatrixLab.prototype.build_rate = 1;
 MatrixLab.prototype.energy_usage = 480;
-
+MatrixLab.prototype.icon = 'fas fa-flask';
 
 // -------------------------------------------
 // データ定義
@@ -125,6 +155,13 @@ var stone = new Ore(
 );
 
 // -----------------
+// 原油系
+// -----------------
+var crude_oil = new OilExtractor(
+  "CrudeOil", "原油"
+);
+
+// -----------------
 // 精錬系
 // -----------------
 var iron_ingot = new MetalPlate(
@@ -135,6 +172,16 @@ var copper_ingot = new MetalPlate(
 );
 var magnet = new MetalPlate(
   "Magnet", "磁石", 1.5, 1, [[iron_ingot, 1]]
+);
+var energetic_graphite = new MetalPlate(
+  "EnergeticGraphite", "高エネルギーグラファイト", 2, 1, [[coal, 2]]
+);
+
+// -----------------
+// 製油系
+// -----------------
+var hydrogen = new OilRefinery(
+  "Hydrogen", "水素", 4, 1, [[crude_oil, 2]]
 );
 
 // -----------------
@@ -156,12 +203,17 @@ var circuit_board = new AssemblyProduct(
 var matrix_1 = new MatrixLab(
   "ElectromagneticMatrix", "電磁マトリックス", 3, 1, [[magnet_coil, 1], [circuit_board, 1]]
 );
+var matrix_2 = new MatrixLab(
+  "EnergyMatrix", "エネルギーマトリックス", 6, 1, [[energetic_graphite, 2], [hydrogen, 2]]
+);
 
 var products = [
 	iron_ore, copper_ore, coal, stone,
-	iron_ingot, copper_ingot, magnet,
+	crude_oil,
+	iron_ingot, copper_ingot, magnet, energetic_graphite,
+	hydrogen,
 	gear, magnet_coil, circuit_board,
-	matrix_1
+	matrix_1, matrix_2
 ];
 
 function getProductByName(name) {
