@@ -215,7 +215,7 @@ var products = [
 	crude_oil,
 	iron_ingot, copper_ingot, magnet, energetic_graphite,
 	hydrogen,
-	gear, magnet_coil, circuit_board, electric_motor
+	gear, magnet_coil, circuit_board, electric_motor,
 	matrix_1, matrix_2
 ];
 
