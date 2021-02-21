@@ -92,6 +92,7 @@ var MetalPlate = function(name, name_jp, req_time, result_count, ingredients) {
 MetalPlate.prototype = new Product();
 MetalPlate.prototype.build_rate = 1;
 MetalPlate.prototype.energy_usage = 360;
+MetalPlate.prototype.icon = 'fas fa-burn';
 
 // 研究施設で作るもの
 var MatrixLab = function(name, name_jp, req_time, result_count, ingredients) {
