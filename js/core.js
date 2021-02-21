@@ -71,12 +71,14 @@ AssemblyProduct.prototype.icon = 'fa fa-industry';
 var Ore = function(name, name_jp) {
 	this.name     = name;
 	this.name_jp  = name_jp;
-	this.req_time = 2 / 4; // 採掘対象が採掘範囲に4つあることを想定(採掘対象1つごとに2秒に1つ生産される)
 };
 Ore.prototype = new Product();
 Ore.prototype.ingredients = [];
-Ore.prototype.build_rate = 1;
 Ore.prototype.energy_usage = 420;
+Ore.prototype.require_builder_count =  function(product_per_sec) {
+	// 採掘対象が採掘範囲に4つあることを想定(採掘対象1つごとに2秒に1つ生産される)
+	return product_per_sec / this.req_time;
+};
 Ore.prototype.icon = 'fas fa-baby-carriage';
 
 // 溶鉱炉で作るもの
