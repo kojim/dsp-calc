@@ -197,7 +197,8 @@ var circuit_board = new AssemblyProduct(
   "CircuitBoard", "回路基板", 1, 2, [[iron_ingot, 2], [copper_ingot, 1]]
 );
 var electric_motor = new AssemblyProduct(
-  "ElectricMotor", "電動モーター", 2, 1, [[gear, 1], [magnet_coil], [iron_ingot, 2]]
+  // "ElectricMotor", "電動モーター", 2, 1, [[gear, 1], [magnet_coil], [iron_ingot, 2]]
+  "ElectricMotor", "電動モーター", 2, 1, [[iron_ingot, 2], [copper_ingot, 1]]
 );
 
 // -----------------
