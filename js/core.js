@@ -77,7 +77,8 @@ Ore.prototype.ingredients = [];
 Ore.prototype.energy_usage = 420;
 Ore.prototype.require_builder_count =  function(product_per_sec) {
 	// 採掘対象が採掘範囲に4つあることを想定(採掘対象1つごとに2秒に1つ生産される)
-	return product_per_sec / this.req_time;
+	var req_time = 2 / 4
+	return product_per_sec * req_time;
 };
 Ore.prototype.icon = 'fas fa-baby-carriage';
 
