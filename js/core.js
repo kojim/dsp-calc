@@ -196,6 +196,9 @@ var magnet_coil = new AssemblyProduct(
 var circuit_board = new AssemblyProduct(
   "CircuitBoard", "回路基板", 1, 2, [[iron_ingot, 2], [copper_ingot, 1]]
 );
+var electric_motor = new AssemblyProduct(
+  "ElectricMotor", "電動モーター", 2, 1, [[iron_ingot, 2], [gear, 1], [magnet_coil, 1]]
+);
 
 // -----------------
 // 研究系
@@ -212,7 +215,7 @@ var products = [
 	crude_oil,
 	iron_ingot, copper_ingot, magnet, energetic_graphite,
 	hydrogen,
-	gear, magnet_coil, circuit_board,
+	gear, magnet_coil, circuit_board, electric_motor,
 	matrix_1, matrix_2
 ];
 
