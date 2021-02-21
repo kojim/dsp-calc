@@ -209,9 +209,11 @@ var matrix_2 = new MatrixLab(
 
 var products = [
 	iron_ore, copper_ore, coal, stone,
-	iron_ingot, copper_ingot, magnet,
+	crude_oil,
+	iron_ingot, copper_ingot, magnet, energetic_graphite,
+	hydrogen,
 	gear, magnet_coil, circuit_board,
-	matrix_1
+	matrix_1, matrix_2
 ];
 
 function getProductByName(name) {
